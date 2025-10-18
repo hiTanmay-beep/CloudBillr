@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    // ADDED: BaseUrl for resolving non-relative paths
+    "baseUrl": ".",
+    // CORRECTED: Path mapping to point to the 'lib' folder at the root level.
+    "paths": {
+      // THIS IS THE CRITICAL CHANGE: maps @/lib/* directly to ./lib/*
+      "@/lib/*": ["./lib/*"],
+      // General alias (no change)
+      "@/*": ["./src/*"] 
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}

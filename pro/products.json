@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1760524030538",
+    "name": "Cotton club",
+    "hsnCode": "7383",
+    "defaultPrice": 350,
+    "defaultGst": 5,
+    "createdAt": "2025-10-15T10:27:10.538Z"
+  },
+  {
+    "id": "1760531208664",
+    "name": "venice cotton",
+    "hsnCode": "8267",
+    "defaultPrice": 150,
+    "defaultGst": 5,
+    "createdAt": "2025-10-15T12:26:48.664Z"
+  },
+  {
+    "id": "1760556609029",
+    "name": "linen",
+    "hsnCode": "7837",
+    "defaultPrice": 800,
+    "defaultGst": 5,
+    "createdAt": "2025-10-15T19:30:09.029Z"
+  },
+  {
+    "id": "1760698218008",
+    "name": "hello",
+    "hsnCode": "8789",
+    "defaultPrice": 200,
+    "defaultGst": 5,
+    "createdAt": "2025-10-17T10:50:18.008Z"
+  }
+]

@@ -1,0 +1,495 @@
+[
+  {
+    "id": "1760509925541",
+    "invoiceNumber": "INV-2025-0001",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "items": [
+      {
+        "productName": "cotton club",
+        "description": "than",
+        "quantity": 2,
+        "price": 200,
+        "gstRate": 12,
+        "amount": 400
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 400,
+    "discount": 0,
+    "taxableAmount": 400,
+    "gstAmount": 48,
+    "totalAmount": 448,
+    "createdAt": "2025-10-15T06:32:05.541Z",
+    "status": "draft",
+    "ewayBillNo": "821781212"
+  },
+  {
+    "id": "1760512320743",
+    "invoiceNumber": "INV-2025-0002",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "items": [
+      {
+        "productName": "asas",
+        "description": "sasa",
+        "quantity": 3,
+        "price": 200,
+        "gstRate": 18,
+        "amount": 600
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 600,
+    "discount": 0,
+    "taxableAmount": 600,
+    "gstAmount": 108,
+    "totalAmount": 708,
+    "createdAt": "2025-10-15T07:12:00.743Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760514500307",
+    "invoiceNumber": "INV-2025-0003",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "items": [
+      {
+        "productName": "cotton club",
+        "description": "Than",
+        "quantity": 4,
+        "price": 200,
+        "gstRate": 5,
+        "amount": 800
+      },
+      {
+        "productName": "cotton club",
+        "description": "Than",
+        "quantity": 2,
+        "price": 350,
+        "gstRate": 5,
+        "amount": 700
+      },
+      {
+        "productName": "cotton club",
+        "description": "Than",
+        "quantity": 2,
+        "price": 200,
+        "gstRate": 5,
+        "amount": 400
+      },
+      {
+        "productName": "cotton club",
+        "description": "Than",
+        "quantity": 1,
+        "price": 341,
+        "gstRate": 5,
+        "amount": 341
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 2241,
+    "discount": 0,
+    "taxableAmount": 2241,
+    "gstAmount": 112.05,
+    "totalAmount": 2353.05,
+    "createdAt": "2025-10-15T07:48:20.307Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760523567846",
+    "invoiceNumber": "INV-2025-0004",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "Cotton club",
+        "hsnCode": "8328",
+        "description": "",
+        "unit": "Than",
+        "quantity": 2,
+        "price": 5,
+        "gstRate": 18,
+        "amount": 10
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 10,
+    "discount": 0,
+    "taxableAmount": 10,
+    "gstAmount": 1.8,
+    "roundOff": 0.1999999999999993,
+    "totalAmount": 12,
+    "createdAt": "2025-10-15T10:19:27.846Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760523638480",
+    "invoiceNumber": "INV-2025-0005",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "asa",
+        "hsnCode": "2112",
+        "description": "",
+        "unit": "Than",
+        "quantity": 3,
+        "price": 3,
+        "gstRate": 5,
+        "amount": 9
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 9,
+    "discount": 0,
+    "taxableAmount": 9,
+    "gstAmount": 0.45,
+    "roundOff": -0.4499999999999993,
+    "totalAmount": 9,
+    "createdAt": "2025-10-15T10:20:38.480Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760524077039",
+    "invoiceNumber": "INV-2025-0006",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "ctton club",
+        "hsnCode": "",
+        "description": "",
+        "unit": "Meter",
+        "quantity": 31,
+        "price": 1,
+        "gstRate": 5,
+        "amount": 31
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 31,
+    "discount": 0,
+    "taxableAmount": 31,
+    "gstAmount": 1.55,
+    "roundOff": 0.45000000000000284,
+    "totalAmount": 33,
+    "createdAt": "2025-10-15T10:27:57.039Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760524596027",
+    "invoiceNumber": "INV-2025-0007",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "cotton club",
+        "hsnCode": "8182",
+        "description": "rsd",
+        "unit": "Meter",
+        "quantity": 1,
+        "price": 45,
+        "gstRate": 5,
+        "amount": 45
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 45,
+    "discount": 0,
+    "taxableAmount": 45,
+    "gstAmount": 2.25,
+    "roundOff": -0.25,
+    "totalAmount": 47,
+    "createdAt": "2025-10-15T10:36:36.027Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760526990353",
+    "invoiceNumber": "INV-2025-0008",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "cotton cluib",
+        "hsnCode": "212",
+        "description": "",
+        "unit": "Than",
+        "quantity": 12,
+        "price": 24,
+        "gstRate": 5,
+        "amount": 288
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 288,
+    "discount": 0,
+    "taxableAmount": 288,
+    "gstAmount": 14.4,
+    "roundOff": -0.39999999999997726,
+    "totalAmount": 302,
+    "createdAt": "2025-10-15T11:16:30.353Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760528250062",
+    "invoiceNumber": "INV-2025-0009",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "cotton club",
+        "hsnCode": "7827",
+        "description": "than",
+        "unit": "Than",
+        "quantity": 1.05,
+        "price": 32,
+        "gstRate": 5,
+        "amount": 33.6
+      }
+    ],
+    "discountRate": 4,
+    "isSameState": true,
+    "subtotal": 33.6,
+    "discount": 1.344,
+    "taxableAmount": 32.256,
+    "gstAmount": 1.68,
+    "roundOff": 0.06400000000000006,
+    "totalAmount": 34,
+    "createdAt": "2025-10-15T11:37:30.062Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760528346043",
+    "invoiceNumber": "INV-2025-0010",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "hi",
+        "hsnCode": "",
+        "description": "hello",
+        "unit": "Meter",
+        "quantity": 43,
+        "price": 23,
+        "gstRate": 5,
+        "amount": 989
+      }
+    ],
+    "discountRate": 15,
+    "isSameState": true,
+    "subtotal": 989,
+    "discount": 148.35,
+    "taxableAmount": 840.65,
+    "gstAmount": 49.45,
+    "roundOff": -0.10000000000002274,
+    "totalAmount": 890,
+    "createdAt": "2025-10-15T11:39:06.043Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760528876295",
+    "invoiceNumber": "INV-2025-0011",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "Cotton club",
+        "hsnCode": "7383",
+        "unit": "Pcs",
+        "quantity": 3,
+        "rate": 350,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 4,
+    "isSameState": true,
+    "subtotal": 1050,
+    "discount": 42,
+    "taxableAmount": 1008,
+    "gstAmount": 50.4,
+    "roundOff": -0.40000000000009095,
+    "totalAmount": 1058,
+    "createdAt": "2025-10-15T11:47:56.295Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760530072526",
+    "invoiceNumber": "INV-2025-0012",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "Cotton club",
+        "hsnCode": "7383",
+        "unit": "Pcs",
+        "quantity": 13.3,
+        "rate": 350,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 4,
+    "isSameState": true,
+    "subtotal": 4655,
+    "discount": 186.2,
+    "taxableAmount": 4468.8,
+    "gstAmount": 223.44,
+    "roundOff": -0.23999999999978172,
+    "totalAmount": 4692,
+    "createdAt": "2025-10-15T12:07:52.526Z",
+    "status": "draft"
+  },
+  {
+    "id": "1760545033942",
+    "invoiceNumber": "INV-2025-0013",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760509826511",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "Cotton club",
+        "hsnCode": "7383",
+        "unit": "Than",
+        "quantity": 14,
+        "rate": 350,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 3,
+    "isSameState": false,
+    "subtotal": 4900,
+    "discount": 147,
+    "taxableAmount": 4753,
+    "gstAmount": 237.65,
+    "roundOff": 0.3500000000003638,
+    "totalAmount": 4991,
+    "createdAt": "2025-10-15T16:17:13.942Z",
+    "status": "Generated",
+    "ewayBillNo": "12546633"
+  },
+  {
+    "id": "1760554017358",
+    "invoiceNumber": "INV-2025-0014",
+    "invoiceDate": "2025-10-16",
+    "customerId": "1760553978829",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "Cotton club",
+        "hsnCode": "7383",
+        "unit": "Pcs",
+        "quantity": 2,
+        "rate": 350,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 700,
+    "discount": 0,
+    "taxableAmount": 700,
+    "gstAmount": 35,
+    "roundOff": 0,
+    "totalAmount": 735,
+    "createdAt": "2025-10-15T18:46:57.358Z",
+    "status": "Generated"
+  },
+  {
+    "id": "1760554218822",
+    "invoiceNumber": "INV-2025-0015",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760553978829",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "Cotton club",
+        "hsnCode": "7383",
+        "unit": "Pcs",
+        "quantity": 21,
+        "rate": 350,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 7350,
+    "discount": 0,
+    "taxableAmount": 7350,
+    "gstAmount": 367.5,
+    "roundOff": 0.5,
+    "totalAmount": 7718,
+    "createdAt": "2025-10-15T18:50:18.822Z",
+    "status": "Generated"
+  },
+  {
+    "id": "1760554353704",
+    "invoiceNumber": "INV-2025-0016",
+    "invoiceDate": "2025-10-15",
+    "customerId": "1760553978829",
+    "brokerName": "Tanmay",
+    "items": [
+      {
+        "productName": "venice cotton",
+        "hsnCode": "8267",
+        "unit": "Pcs",
+        "quantity": 1,
+        "rate": 150,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 150,
+    "discount": 0,
+    "taxableAmount": 150,
+    "gstAmount": 7.5,
+    "roundOff": 0.5,
+    "totalAmount": 158,
+    "createdAt": "2025-10-15T18:52:33.704Z",
+    "status": "Generated"
+  },
+  {
+    "id": "1760556639228",
+    "invoiceNumber": "INV-2025-0017",
+    "invoiceDate": "2025-10-16",
+    "customerId": "1760553978829",
+    "brokerName": "devesh",
+    "items": [
+      {
+        "productName": "linen",
+        "hsnCode": "7837",
+        "unit": "Pcs",
+        "quantity": 1,
+        "rate": 800,
+        "gstRate": 5
+      }
+    ],
+    "discountRate": 0,
+    "isSameState": true,
+    "subtotal": 800,
+    "discount": 0,
+    "taxableAmount": 800,
+    "gstAmount": 40,
+    "roundOff": 0,
+    "totalAmount": 840,
+    "createdAt": "2025-10-15T19:30:39.228Z",
+    "status": "Generated"
+  }
+]

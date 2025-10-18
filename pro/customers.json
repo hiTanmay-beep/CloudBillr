@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1760509826511",
+    "gstNumber": "09AADFS1992C1Z6",
+    "businessName": "Sample Business Name",
+    "contactPerson": "8126545331",
+    "email": "",
+    "phone": "08126545331",
+    "address": "40 Pushp Nikatan Colony Near Chaya Niketan Girls Hostel,Sikandra",
+    "city": "Agra",
+    "state": "Uttar Pradesh",
+    "pincode": "282007",
+    "createdAt": "2025-10-15T06:30:26.511Z"
+  },
+  {
+    "id": "1760545184483",
+    "gstNumber": " 09AADFS1992C1Z",
+    "businessName": "Sample Business Name",
+    "contactPerson": "Tanmay",
+    "email": "",
+    "phone": "08126545331",
+    "address": "40 Pushp Nikatan Colony Near Chaya Niketan Girls Hostel,Sikandra",
+    "city": "Agra",
+    "state": "Uttar Pradesh",
+    "pincode": "282007",
+    "createdAt": "2025-10-15T16:19:44.483Z"
+  },
+  {
+    "id": "1760553978829",
+    "gstNumber": "09AADFS1992C1Z7",
+    "businessName": "AppyFlow Technologies",
+    "contactPerson": "Tanmay",
+    "email": "khandelwaltanmay352@gmail.com",
+    "phone": "08126545331",
+    "address": "3018 Shop no 5, Street no 1, Ganesh Nagar, Ludhiana, Punjab, 141008",
+    "city": "Ludhiana",
+    "state": "Punjab",
+    "pincode": "141008",
+    "createdAt": "2025-10-15T18:46:18.829Z"
+  }
+]
