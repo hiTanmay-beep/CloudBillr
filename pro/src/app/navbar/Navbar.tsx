@@ -51,7 +51,7 @@ export default function Navbar() {
 
   // Redirect logged-in users away from public pages
   useEffect(() => {
-    if (mounted && !loading && isLoggedIn && ['/', '/about', '/contact', '/signin', '/signup'].includes(pathname)) {
+    if (mounted && !loading && isLoggedIn && ['/', '/about', '/contact', '/login', '/signup'].includes(pathname)) {
       router.push('/dashboard');
     }
   }, [isLoggedIn, pathname, router, loading, mounted]);
@@ -124,7 +124,7 @@ export default function Navbar() {
                 </Link>
                 <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-blue-400">
                   <Link
-                    href="/signin"
+                    href="/login"
                     className="px-6 py-2 text-white border-2 border-blue-600 rounded-lg hover:bg-blue-800 hover:to-blue-800 font-semibold transition-all duration-300"
                   >
                     Sign In
@@ -223,7 +223,7 @@ export default function Navbar() {
                 </Link>
                 <div className="border-t border-blue-500 pt-3 mt-3 space-y-2">
                   <Link
-                    href="/signin"
+                    href="/login"
                     className="block px-4 py-2 text-white border-2 border-blue-600 rounded font-semibold text-center hover:bg-blue-800 hover:text-blue-900 transition-all duration-300"
                     onClick={() => setMobileMenuOpen(false)}
                   >
