@@ -225,7 +225,7 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any, baseUrl:
     .bank-row { display: flex; font-size: 9px; margin-bottom: 3px; }
     .bank-label { width: 140px; font-weight: 600; }
     .bank-value { flex: 1; }
-    .bank-divider { height: 1px; background: #ccc; margin: 8px 0; }
+    .bank-divider { height: 0; margin: 8px 0; border-top: 1px solid #999; }
     
     .terms { padding: 10px; }
     .terms h3 { font-size: 10px; font-weight: bold; margin-bottom: 5px; }
@@ -521,7 +521,7 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any, baseUrl:
         .bank-row { display: flex; font-size: 9px; margin-bottom: 3px; }
         .bank-label { width: 140px; font-weight: 600; }
         .bank-value { flex: 1; }
-        .bank-divider { height: 1px; background: #ccc; margin: 8px 0; }
+        .bank-divider { height: 0; margin: 8px 0; border-top: 1px solid #999; }
         .terms { padding: 10px; }
         .terms h3 { font-size: 10px; font-weight: bold; margin-bottom: 5px; }
         .terms ul { list-style: none; padding: 0; }

@@ -14,6 +14,7 @@ async function getCurrentUserId(request: NextRequest): Promise<string | null> {
     const token = request.cookies.get('auth-token')?.value;
 
     if (!token) {
+      console.log('No auth token found');
       return null;
     }
 
@@ -23,9 +24,11 @@ async function getCurrentUserId(request: NextRequest): Promise<string | null> {
     const session = await sessions.findOne({ token });
 
     if (!session) {
+      console.log('No session found for token');
       return null;
     }
 
+    console.log('Session found, userId:', session.userId);
     return session.userId;
   } catch (error) {
     console.error('Error getting current user:', error);
@@ -46,12 +49,23 @@ export async function GET(request: NextRequest) {
     const db = client.db('cloudbillr');
     const users = db.collection('users');
 
-    const user = await users.findOne(
-      { _id: new ObjectId(userId) },
-      { projection: { password: 0 } }
-    );
+    // Try to find user by ObjectId or string ID
+    let user;
+    try {
+      user = await users.findOne(
+        { _id: new ObjectId(userId) },
+        { projection: { password: 0 } }
+      );
+    } catch (e) {
+      // If ObjectId conversion fails, try with string
+      user = await users.findOne(
+        { _id: userId as any },
+        { projection: { password: 0 } }
+      );
+    }
 
     if (!user) {
+      console.log('User not found with userId:', userId);
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
@@ -66,6 +80,9 @@ export async function GET(request: NextRequest) {
 export async function PUT(request: NextRequest) {
   try {
     const userId = await getCurrentUserId(request);
+    console.log('='.repeat(60));
+    console.log('PUT request - userId from session:', userId);
+    console.log('userId type:', typeof userId);
 
     if (!userId) {
       return NextResponse.json({ error: 'Not authenticated' }, { status: 401 });
@@ -121,6 +138,28 @@ export async function PUT(request: NextRequest) {
     const db = client.db('cloudbillr');
     const users = db.collection('users');
 
+    // First, let's check if user exists
+    console.log('Checking if user exists with userId:', userId);
+    let existingUser;
+    try {
+      existingUser = await users.findOne({ _id: new ObjectId(userId) });
+      console.log('Found user with ObjectId:', existingUser ? 'YES' : 'NO');
+    } catch (e) {
+      console.log('ObjectId search failed, trying string...');
+      existingUser = await users.findOne({ _id: userId as any });
+      console.log('Found user with string ID:', existingUser ? 'YES' : 'NO');
+    }
+
+    if (!existingUser) {
+      console.log('❌ User not found in database!');
+      console.log('Available users in collection:');
+      const allUsers = await users.find({}, { projection: { _id: 1, email: 1 } }).limit(5).toArray();
+      console.log(allUsers);
+      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    }
+
+    console.log('✅ User found, proceeding with update');
+
     // Build update object
     const updateData: any = {
       companyName,
@@ -156,19 +195,39 @@ export async function PUT(request: NextRequest) {
 
     updateData.bankAccounts = bankAccounts;
 
-    // Update user
-    const result = await users.findOneAndUpdate(
-      { _id: new ObjectId(userId) },
-      { $set: updateData },
-      { returnDocument: 'after' }
+    // Update user using the same _id format as found
+    console.log('Updating user with _id:', existingUser._id);
+    console.log('Update data:', JSON.stringify(updateData, null, 2));
+    
+    const result = await users.updateOne(
+      { _id: existingUser._id },
+      { $set: updateData }
     );
 
-    if (!result || !result.value) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+    console.log('Update result:', result);
+
+    if (!result.acknowledged || result.matchedCount === 0) {
+      console.log('❌ Update failed - no documents matched');
+      return NextResponse.json({ error: 'Failed to update user' }, { status: 500 });
     }
 
-    // Return updated user without password
-    const { password: _, ...userWithoutPassword } = result.value;
+    console.log('✅ Profile updated successfully');
+    
+    // Fetch the updated user
+    const updatedUser = await users.findOne(
+      { _id: existingUser._id },
+      { projection: { password: 0 } }
+    );
+
+    if (!updatedUser) {
+      console.log('❌ Could not fetch updated user');
+      return NextResponse.json({ error: 'Update succeeded but could not fetch user' }, { status: 500 });
+    }
+
+    console.log('✅ Fetched updated user');
+    console.log('='.repeat(60));
+
+    const userWithoutPassword = updatedUser;
 
     return NextResponse.json(
       { 
@@ -178,7 +237,7 @@ export async function PUT(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    console.error('Profile update error:', error);
+    console.error('❌ Profile update error:', error);
     return NextResponse.json({ error: 'Failed to update profile' }, { status: 500 });
   }
 }

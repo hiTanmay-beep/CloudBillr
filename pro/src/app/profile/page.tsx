@@ -34,6 +34,10 @@ export default function ProfilePage() {
     fetchProfile();
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const fetchProfile = async () => {
     try {
       const response = await fetch('/api/profile');
@@ -61,10 +65,12 @@ export default function ProfilePage() {
         });
       } else {
         setError('Failed to load profile');
+        scrollToTop();
       }
     } catch (error) {
       console.error('Error fetching profile:', error);
       setError('Failed to load profile');
+      scrollToTop();
     } finally {
       setFetchLoading(false);
     }
@@ -78,26 +84,31 @@ export default function ProfilePage() {
     // Validation
     if (!formData.companyName || !formData.gstin) {
       setError('Company name and GSTIN are required');
+      scrollToTop();
       return;
     }
 
     if (!formData.phone1) {
       setError('Primary phone number is required');
+      scrollToTop();
       return;
     }
 
     if (!formData.bank1Name || !formData.bank1Account || !formData.bank1IFSC) {
       setError('Bank Account 1 details are required');
+      scrollToTop();
       return;
     }
 
     if (formData.numBankAccounts === 2 && (!formData.bank2Name || !formData.bank2Account || !formData.bank2IFSC)) {
       setError('Bank Account 2 details are required');
+      scrollToTop();
       return;
     }
 
     if (formData.password && formData.password !== formData.confirmPassword) {
       setError('Passwords do not match');
+      scrollToTop();
       return;
     }
 
@@ -132,9 +143,19 @@ export default function ProfilePage() {
       }
 
       setSuccess('Profile updated successfully!');
-      setTimeout(() => setSuccess(''), 3000);
+      scrollToTop();
+      
+      // Clear password fields after successful update
+      setFormData(prev => ({
+        ...prev,
+        password: '',
+        confirmPassword: ''
+      }));
+      
+      setTimeout(() => setSuccess(''), 5000);
     } catch (err: any) {
       setError(err.message);
+      scrollToTop();
     } finally {
       setLoading(false);
     }
