@@ -12,6 +12,7 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Check authentication status
   const checkAuth = async () => {
@@ -25,9 +26,18 @@ export default function Navbar() {
     }
   };
 
+  // Only run on client side after mount
   useEffect(() => {
+    setMounted(true);
     checkAuth();
-  }, [pathname]); // Re-check auth when pathname changes
+  }, []);
+
+  // Re-check auth when pathname changes
+  useEffect(() => {
+    if (mounted) {
+      checkAuth();
+    }
+  }, [pathname, mounted]);
 
   const handleLogout = async () => {
     try {
@@ -41,17 +51,37 @@ export default function Navbar() {
 
   // Redirect logged-in users away from public pages
   useEffect(() => {
-    if (!loading && isLoggedIn && ['/', '/about', '/contact', '/login', '/signup'].includes(pathname)) {
+    if (mounted && !loading && isLoggedIn && ['/', '/about', '/contact', '/login', '/signup'].includes(pathname)) {
       router.push('/dashboard');
     }
-  }, [isLoggedIn, pathname, router, loading]);
+  }, [isLoggedIn, pathname, router, loading, mounted]);
 
-  if (loading) {
-    return <div className="bg-white dark:bg-gray-800 h-16"></div>;
+  // Return skeleton while loading to prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <nav className="bg-gradient-to-r from-blue-600 to-blue-800 dark:from-gray-900 dark:to-gray-800 shadow-xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-20">
+            <span style={{
+              fontSize: '28px',
+              fontWeight: '700',
+              background: 'linear-gradient(135deg, #3B82F6 0%, #1E40AF 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              fontFamily: 'sifonn, sans-serif',
+              letterSpacing: '0.5px',
+            }}>
+              CloudBillr
+            </span>
+          </div>
+        </div>
+      </nav>
+    );
   }
 
   return (
-    <nav className="bg-gradient-to-r from-blue-600 to-blue-800 dark:from-gray-900 dark:to-gray-800 shadow-xl">
+    <nav className="bg-gradient-to-r from-blue-600 to-blue-800 dark:from-gray-900 dark:to-gray-800 shadow-xl" suppressHydrationWarning>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -95,13 +125,13 @@ export default function Navbar() {
                 <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-blue-400">
                   <Link
                     href="/login"
-                    className="px-6 py-2 text-white border-2 border-white rounded-lg hover:bg-white hover:text-blue-600 font-semibold transition-all duration-300"
+                    className="px-6 py-2 text-white border-2 border-blue-600 rounded-lg hover:bg-blue-800 hover:to-blue-800 font-semibold transition-all duration-300"
                   >
                     Login
                   </Link>
                   <Link
                     href="/signup"
-                    className="px-6 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 font-semibold shadow-lg transition-all duration-300"
+                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-400 font-semibold shadow-lg transition-all duration-300"
                   >
                     Sign Up
                   </Link>
