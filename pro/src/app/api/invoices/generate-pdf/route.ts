@@ -59,7 +59,6 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing invoiceId' }, { status: 400 });
     }
 
-    // Get userId from session/auth token
     const userId = await getCurrentUserId(request);
     
     if (!userId) {
@@ -112,7 +111,6 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Fetch company details from database using userId from session
     let company = null;
     try {
       company = await db
@@ -123,7 +121,10 @@ export async function POST(request: NextRequest) {
       console.error('Error fetching company details:', error);
     }
 
-    const html = generateInvoiceHTML(invoice, customer, company);
+    // Get the base URL for absolute image paths
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || request.headers.get('origin') || 'http://localhost:3000';
+    
+    const html = generateInvoiceHTML(invoice, customer, company, baseUrl);
 
     return new NextResponse(html, {
       status: 200,
@@ -142,18 +143,20 @@ export async function POST(request: NextRequest) {
   }
 }
 
-function generateInvoiceHTML(invoice: any, customer: any, company: any) {
+function generateInvoiceHTML(invoice: any, customer: any, company: any, baseUrl: string) {
   const cgst = invoice.isSameState ? (invoice.gstAmount / 2).toFixed(2) : '0.00';
   const sgst = invoice.isSameState ? (invoice.gstAmount / 2).toFixed(2) : '0.00';
   const igst = !invoice.isSameState ? invoice.gstAmount.toFixed(2) : '0.00';
 
-  // Use company data from database or fallback to hardcoded values
   const companyName = company?.companyName || 'Shiv Sahai Shri Kishan';
   const companyType = company?.companyType || 'WHOLESALER CLOTH MERCHANT';
   const companyAddress = company?.companyAddress || '1st Floor, Mukherjee Market, Subhash Bazaar, Agra 282003 U.P., INDIA';
   const gstin = company?.gstin || '09AADFS1992C1Z6';
   const phone1 = company?.phone1 || '9411924901';
   const phone2 = company?.phone2 || '9410003450';
+
+  // Use absolute URL for the logo
+  const logoUrl = `${baseUrl}/ganesh.png`;
 
   return `
 <!DOCTYPE html>
@@ -165,22 +168,19 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: Arial, sans-serif; padding: 15px; background: #fff; }
     .invoice { max-width: 210mm; margin: 0 auto; border: 2px solid #000; background: white; position: relative; }
-    
 
     .invoice-wrapper {
-  border: 2px solid #000;
-  max-width: 210mm;
-  margin: 0 auto;
-  background: #fff;
-  position: relative;
-  padding: 0;
-}
-.invoice {
-  width: 100%;
-  border: none; /* remove border from .invoice */
-}
-
-
+      border: 2px solid #000;
+      max-width: 210mm;
+      margin: 0 auto;
+      background: #fff;
+      position: relative;
+      padding: 0;
+    }
+    .invoice {
+      width: 100%;
+      border: none;
+    }
 
     .copy-label { text-align: left; padding: 8px 15px; font-weight: bold; font-size: 11px; color: #8B0000; border-bottom: 1px solid #000; }
     
@@ -190,7 +190,7 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
     .top-right { font-size: 9px; text-align: right; line-height: 1.5; white-space: nowrap; }
     
     .company-header { display: flex; padding: 15px 20px; border-bottom: 2px solid #000; align-items: center; gap: 15px; }
-    .company-logo { width: 70px; height: 70px; flex-shrink: 0; }
+    .company-logo { width: 70px; height: 70px; flex-shrink: 0; object-fit: contain; }
     .company-info { flex: 1; text-align: center; }
     .company-name { font-size: 32px; font-weight: bold; color: #8B0000; margin-bottom: 2px; }
     .company-type { font-size: 11px; margin-bottom: 3px; color: #000; font-weight: bold; }
@@ -281,7 +281,7 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
       </div>
       
       <div class="company-header">
-        <img class="company-logo" src="/ganesh.png" alt="Company Logo" />
+        <img class="company-logo" src="${logoUrl}" alt="Company Logo" onerror="this.style.display='none'" />
         <div class="company-info">
           <div class="company-name">${companyName}</div>
           <div class="company-type">${companyType}</div>
@@ -362,7 +362,6 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
                 <div class="bank-row"><div class="bank-label">Bank Account Number</div><div class="bank-value">3306214000016</div></div>
                 <div class="bank-row"><div class="bank-label">Bank Branch IFSC</div><div class="bank-value">CNRB0006030</div></div>
               `}
-            </div>
             </div>
             <div class="terms">
               <h3>Terms & Conditions:</h3>
@@ -455,13 +454,12 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
 
   <script>
     const invoiceHTML = document.querySelector('.invoice').innerHTML;
+    const logoUrl = '${logoUrl}';
 
     function printMultipleCopies() {
-      // Always start with Original for Recipient
       let pages = [];
       pages.push({ name: 'Original for Recipient', html: invoiceHTML });
       
-      // Add checked copies
       if (document.getElementById('copy2').checked) {
         pages.push({ name: 'Duplicate for Transporter ', html: invoiceHTML });
       }
