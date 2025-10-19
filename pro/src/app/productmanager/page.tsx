@@ -1,3 +1,5 @@
+//productmanager/page.tsx
+
 'use client';
 
 import { useState, useEffect } from 'react';
@@ -154,52 +156,54 @@ export default function ProductsPage() {
             </form>
           </div>
         )}
-
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-700">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                  Product Name
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                  HSN Code
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                  Default Price
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">
-                  Default GST
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
-              {products.length === 0 ? (
+          {/* Add horizontal scroll wrapper for mobile */}
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                  <td colSpan={4} className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
-                    No products yet. Add your first product!
-                  </td>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">
+                    Product Name
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">
+                    HSN Code
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">
+                    Default Price
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">
+                    Default GST
+                  </th>
                 </tr>
-              ) : (
-                products.map((product) => (
-                  <tr key={product.id}>
-                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">
-                      {product.name}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">
-                      {product.hsnCode || '-'}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">
-                      ₹{product.defaultPrice.toFixed(2)}
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">
-                      {product.defaultGst}%
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+                {products.length === 0 ? (
+                  <tr>
+                    <td colSpan={4} className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">
+                      No products yet. Add your first product!
                     </td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  products.map((product) => (
+                    <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">
+                        {product.name}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">
+                        {product.hsnCode || '-'}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">
+                        ₹{product.defaultPrice.toFixed(2)}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">
+                        {product.defaultGst}%
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

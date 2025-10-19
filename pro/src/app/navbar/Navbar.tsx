@@ -217,6 +217,13 @@ export default function Navbar() {
                 >
                   Dashboard
                 </Link>
+                 <Link
+                  href="/invoices"
+                  className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Invoices
+                </Link>
                 <Link
                   href="/customers"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
@@ -225,18 +232,11 @@ export default function Navbar() {
                   Customers
                 </Link>
                 <Link
-                  href="/products"
+                  href="/productmanager"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Products
-                </Link>
-                <Link
-                  href="/invoices"
-                  className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Invoices
                 </Link>
                 <Link
                   href="/profile"

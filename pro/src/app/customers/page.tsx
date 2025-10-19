@@ -1,3 +1,5 @@
+//customers/page.tsx
+
 'use client';
 
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
@@ -201,35 +203,36 @@ export default function CustomersPage() {
             </form>
           </div>
         )}
-
         <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-          {/* --- Customer Table remains the same --- */}
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-             <thead className="bg-gray-50 dark:bg-gray-700">
+          {/* Add horizontal scroll wrapper for mobile */}
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+              <thead className="bg-gray-50 dark:bg-gray-700">
                 <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Business Name</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">GST Number</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Contact</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">Phone</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase">City</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">Business Name</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">GST Number</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">Contact</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">Phone</th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase whitespace-nowrap">City</th>
                 </tr>
-             </thead>
-             <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+              </thead>
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {customers.length === 0 ? (
-                    <tr><td colSpan={5} className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No customers found.</td></tr>
+                  <tr><td colSpan={5} className="px-6 py-4 text-center text-gray-500 dark:text-gray-400">No customers found.</td></tr>
                 ) : (
-                    customers.map((customer) => (
-                        <tr key={customer.id}>
-                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">{customer.businessName}</td>
-                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">{customer.gstNumber}</td>
-                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">{customer.contactPerson}</td>
-                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">{customer.phone}</td>
-                            <td className="px-6 py-4 text-sm text-gray-900 dark:text-white">{customer.city}</td>
-                        </tr>
-                    ))
+                  customers.map((customer) => (
+                    <tr key={customer.id} className="hover:bg-gray-50 dark:hover:bg-gray-700/50">
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">{customer.businessName}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">{customer.gstNumber}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">{customer.contactPerson}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">{customer.phone}</td>
+                      <td className="px-6 py-4 text-sm text-gray-900 dark:text-white whitespace-nowrap">{customer.city}</td>
+                    </tr>
+                  ))
                 )}
-             </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
