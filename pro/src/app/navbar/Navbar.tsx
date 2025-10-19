@@ -13,21 +13,21 @@ export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  useEffect(() => {
-    // Check if user is logged in
-    const checkAuth = async () => {
-      try {
-        const response = await fetch('/api/profile');
-        setIsLoggedIn(response.ok);
-      } catch (error) {
-        setIsLoggedIn(false);
-      } finally {
-        setLoading(false);
-      }
-    };
+  // Check authentication status
+  const checkAuth = async () => {
+    try {
+      const response = await fetch('/api/profile');
+      setIsLoggedIn(response.ok);
+    } catch (error) {
+      setIsLoggedIn(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     checkAuth();
-  }, []);
+  }, [pathname]); // Re-check auth when pathname changes
 
   const handleLogout = async () => {
     try {
@@ -41,10 +41,10 @@ export default function Navbar() {
 
   // Redirect logged-in users away from public pages
   useEffect(() => {
-    if (isLoggedIn && ['/', '/about', '/contact'].includes(pathname)) {
+    if (!loading && isLoggedIn && ['/', '/about', '/contact', '/login', '/signup'].includes(pathname)) {
       router.push('/dashboard');
     }
-  }, [isLoggedIn, pathname, router]);
+  }, [isLoggedIn, pathname, router, loading]);
 
   if (loading) {
     return <div className="bg-white dark:bg-gray-800 h-16"></div>;
@@ -70,42 +70,38 @@ export default function Navbar() {
               CloudBillr
             </span>
           </Link>
-
-
-
-
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {!isLoggedIn ? (
               <>
                 <Link
                   href="/"
-                  className="text-white hover:text-blue-600 font-medium transition-colors duration-300"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
-                  className="text-white hover:text-blue-600 font-medium transition-colors duration-300"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
                 >
                   About
                 </Link>
                 <Link
                   href="/contact"
-                  className="text-white hover:text-blue-600 font-medium transition-colors duration-300"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
                 >
                   Contact
                 </Link>
                 <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-blue-400">
                   <Link
                     href="/login"
-                    className="px-6 py-2 text-blue-600 border-2 border-blue-600 rounded-lg hover:bg-blue-800 hover:text-white font-semibold transition-all duration-300"
+                    className="px-6 py-2 text-white border-2 border-white rounded-lg hover:bg-white hover:text-blue-600 font-semibold transition-all duration-300"
                   >
                     Login
                   </Link>
                   <Link
                     href="/signup"
-                    className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-800 font-semibold shadow-lg transition-all duration-300"
+                    className="px-6 py-2 bg-white text-blue-600 rounded-lg hover:bg-blue-50 font-semibold shadow-lg transition-all duration-300"
                   >
                     Sign Up
                   </Link>
@@ -115,37 +111,37 @@ export default function Navbar() {
               <>
                 <Link
                   href="/dashboard"
-                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
                 >
                   Dashboard
                 </Link>
                 <Link
-                  href="/customers"
-                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Customers
-                </Link>
-                <Link
-                  href="/products"
-                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
-                >
-                  Products
-                </Link>
-                <Link
                   href="/invoices"
-                  className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
                 >
                   Invoices
                 </Link>
                 <Link
+                  href="/customers"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
+                >
+                  Customers
+                </Link>
+                <Link
+                  href="/productmanager"
+                  className="text-white hover:text-blue-200 font-medium transition-colors duration-300"
+                >
+                  Products
+                </Link>
+                <Link
                   href="/profile"
-                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold"
+                  className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold transition-all duration-300"
                 >
                   Profile
                 </Link>
                 <button
                   onClick={handleLogout}
-                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold"
+                  className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold transition-all duration-300"
                 >
                   Logout
                 </button>
@@ -177,18 +173,21 @@ export default function Navbar() {
                 <Link
                   href="/"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Home
                 </Link>
                 <Link
                   href="/about"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   About
                 </Link>
                 <Link
                   href="/contact"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Contact
                 </Link>
@@ -196,12 +195,14 @@ export default function Navbar() {
                   <Link
                     href="/login"
                     className="block px-4 py-2 text-white border-2 border-white rounded font-semibold text-center hover:bg-white hover:text-blue-600 transition-all duration-300"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Login
                   </Link>
                   <Link
                     href="/signup"
                     className="block px-4 py-2 bg-white text-blue-600 rounded font-semibold text-center hover:bg-blue-50 transition-all duration-300"
+                    onClick={() => setMobileMenuOpen(false)}
                   >
                     Sign Up
                   </Link>
@@ -212,35 +213,43 @@ export default function Navbar() {
                 <Link
                   href="/dashboard"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Dashboard
                 </Link>
                 <Link
                   href="/customers"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Customers
                 </Link>
                 <Link
                   href="/products"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Products
                 </Link>
                 <Link
                   href="/invoices"
                   className="block px-4 py-2 text-white hover:bg-blue-600 dark:hover:bg-gray-700 rounded transition-colors duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Invoices
                 </Link>
                 <Link
                   href="/profile"
                   className="block px-4 py-2 bg-green-500 text-white rounded font-semibold text-center hover:bg-green-600 transition-all duration-300"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Profile
                 </Link>
                 <button
-                  onClick={handleLogout}
+                  onClick={() => {
+                    handleLogout();
+                    setMobileMenuOpen(false);
+                  }}
                   className="block w-full px-4 py-2 bg-red-500 text-white rounded font-semibold text-center hover:bg-red-600 transition-all duration-300"
                 >
                   Logout

@@ -362,7 +362,7 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
                 <div class="bank-row"><div class="bank-label">Bank Account Number</div><div class="bank-value">3306214000016</div></div>
                 <div class="bank-row"><div class="bank-label">Bank Branch IFSC</div><div class="bank-value">CNRB0006030</div></div>
               `}
-            </div>>
+            </div>
             </div>
             <div class="terms">
               <h3>Terms & Conditions:</h3>
@@ -436,11 +436,11 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
         </div>
         <div class="checkbox-item">
           <input type="checkbox" id="copy2">
-          <label for="copy2">Duplicate for Transporter (Copy 1)</label>
+          <label for="copy2">Duplicate for Transporter </label>
         </div>
         <div class="checkbox-item">
           <input type="checkbox" id="copy3">
-          <label for="copy3">Duplicate for Transporter (Copy 2)</label>
+          <label for="copy3">Duplicate for Transporter </label>
         </div>
         <div class="checkbox-item">
           <input type="checkbox" id="copy4">
@@ -463,10 +463,10 @@ function generateInvoiceHTML(invoice: any, customer: any, company: any) {
       
       // Add checked copies
       if (document.getElementById('copy2').checked) {
-        pages.push({ name: 'Duplicate for Transporter (Copy 1)', html: invoiceHTML });
+        pages.push({ name: 'Duplicate for Transporter ', html: invoiceHTML });
       }
       if (document.getElementById('copy3').checked) {
-        pages.push({ name: 'Duplicate for Transporter (Copy 2)', html: invoiceHTML });
+        pages.push({ name: 'Duplicate for Transporter ', html: invoiceHTML });
       }
       if (document.getElementById('copy4').checked) {
         pages.push({ name: 'Triplicate for Supplier', html: invoiceHTML });
