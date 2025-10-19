@@ -51,7 +51,7 @@ export default function Navbar() {
 
   // Redirect logged-in users away from public pages
   useEffect(() => {
-    if (mounted && !loading && isLoggedIn && ['/', '/about', '/contact', '/login', '/signup'].includes(pathname)) {
+    if (mounted && !loading && isLoggedIn && ['/', '/about', '/contact', '/signin', '/signup'].includes(pathname)) {
       router.push('/dashboard');
     }
   }, [isLoggedIn, pathname, router, loading, mounted]);
@@ -124,10 +124,10 @@ export default function Navbar() {
                 </Link>
                 <div className="flex items-center space-x-4 ml-4 pl-4 border-l border-blue-400">
                   <Link
-                    href="/login"
+                    href="/signin"
                     className="px-6 py-2 text-white border-2 border-blue-600 rounded-lg hover:bg-blue-800 hover:to-blue-800 font-semibold transition-all duration-300"
                   >
-                    Login
+                    Sign In
                   </Link>
                   <Link
                     href="/signup"
@@ -223,15 +223,15 @@ export default function Navbar() {
                 </Link>
                 <div className="border-t border-blue-500 pt-3 mt-3 space-y-2">
                   <Link
-                    href="/login"
-                    className="block px-4 py-2 text-white border-2 border-white rounded font-semibold text-center hover:bg-white hover:text-blue-600 transition-all duration-300"
+                    href="/signin"
+                    className="block px-4 py-2 text-white border-2 border-blue-600 rounded font-semibold text-center hover:bg-blue-800 hover:text-blue-900 transition-all duration-300"
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    Login
+                    Sign In
                   </Link>
                   <Link
                     href="/signup"
-                    className="block px-4 py-2 bg-white text-blue-600 rounded font-semibold text-center hover:bg-blue-50 transition-all duration-300"
+                    className="block px-4 py-2 bg-blue-600 text-white rounded font-semibold text-center hover:bg-blue-400 transition-all duration-300"
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     Sign Up
